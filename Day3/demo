@@ -1,0 +1,102 @@
+---create database
+CREATE DATABASE dbname
+    #optional
+    WITH
+    OWNER = username
+    TEMPLATE = templatename
+    ENCODING = 'UTF8'
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
+Or
+create database testpythontrack;
+-----Drop database
+drop database testpythontrack;
+---schema (logical classification)
+CREATE SCHEMA schemanane
+    AUTHORIZATION username;
+drop schema schmaname;
+drop schema schemaname cascade;
+----tables
+create table schema_name.tablename
+(
+columnname datatype constraint,
+columnname datatype constraint,
+columnname datatype constraint,
+....
+);
+
+CREATE TABLE public.department
+(
+    id serial,
+    name character varying(50)[] NOT NULL,
+    PRIMARY KEY (id)
+);
+
+ALTER TABLE IF EXISTS public.department
+    OWNER to postgres;
+    
+ALTER TABLE [IF EXISTS] schema_name.tablename
+    ADD COLUMN test bigint not null;
+
+ALTER TABLE IF EXISTS public.department
+    drop column  test ;
+    
+CREATE TABLE public.employee
+(
+    id serial,
+    name character varying(50)[] NOT NULL,
+    salary real,
+    gender character(1)[] DEFAULT 'F',
+    did bigint,
+    CONSTRAINT employee_pk_constr PRIMARY KEY (id),
+    CONSTRAINT name_unique UNIQUE (name),
+    CONSTRAINT dept_fk_rf FOREIGN KEY (did)
+        REFERENCES public.department (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE
+        NOT VALID,
+    CONSTRAINT gender_check CHECK (gender=='F' or gender=='M') NOT VALID
+);
+
+ALTER TABLE IF EXISTS public.employee
+    OWNER to postgres;
+--composite primary key
+constraint const_name_pk primary key (col1,col2name....,colnameN)
+    
+---constraints
+not null
+primary key (unique,not null)
+primary key is index
+-----insert
+--all data & order
+insert into table_name  values(va1l,...val2);
+insert into table_name (col1,col2,...coln ) values(val1,val2,...valn);
+
+insert into public.department (name) values('php');
+insert into public.department (name) values
+('php2'),
+('java'),
+('iot'),
+('ai');
+
+select * from tablename;
+
+
+delete from public.department
+where id=2
+delete from public.department
+where name='php'
+
+
+update public.department
+set name='AI'
+where name='ai'
+update public.department
+set name='AI'
+where id=6
+
+---insert forign key 
+--did must appear in department
+INSERT INTO public.employee
+(name, salary, gender, did)
+	VALUES ('menaa',8000,'F',1);
