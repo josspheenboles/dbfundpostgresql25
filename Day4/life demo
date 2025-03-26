@@ -1,0 +1,138 @@
+--get all manager name and if it assign to manager
+select employee.name as employeenname ,manager.name as managername
+from employee full join employee as manager
+on employee.managerid=manager.id
+
+--get all employee name and if it assign to manager
+select employee.name as employeenname ,manager.name as managername
+from employee left join employee as manager
+on employee.managerid=manager.id
+
+
+--get employee name and its manager name
+select employee.name as employeenname ,manager.name as managername
+from employee inner join employee as manager
+on employee.managerid=manager.id
+
+-- -- joins
+-- -- inner,left,right,full,cross
+-- select *
+-- from employee cross join department
+
+-- --get all employee data and all department data
+-- --full outer join
+-- select *
+-- from department full join employee
+-- -- from employee left join department
+-- on department.id=employee.did ;
+
+-- --get all department data and its employee data
+-- select *
+-- from department left join employee
+-- -- from employee left join department
+-- on department.id=employee.did ;
+
+-- --get all employee data and its dept data
+-- select *
+-- from department right join employee
+-- -- from employee left join department
+-- on department.id=employee.did ;
+
+-- --get employee data that assign to department
+-- select *
+-- from department inner join employee
+-- on department.id=employee.did 
+
+-- -- --get department name ,count its employee
+-- -- --dept name--->department
+-- -- ---count (empl)--->employee
+-- -- join
+-- --left join retrtive all rows from left table
+-- select * 
+-- from department right join employee --id -->dept,id-->emp
+-- on department.id =employee.did --fk
+-- -- -- inner join --->get depart have emp
+-- -- select * 
+-- from department inner join employee --id -->dept,id-->emp
+-- --join where condition
+-- on department.id =employee.did --fk
+
+
+
+
+-- --many queries act as one
+-- --all quires have same count of fields in select clause
+-- --all field data type
+-- --int,varchar,stt
+
+-- select id,name,'ذكر'
+-- from employee
+-- where gender='M'
+-- union
+-- select id,name,'انثى'
+-- from employee
+-- where gender='F';
+-- -- select id,name,'female'--3col
+-- -- from employee
+-- -- where gender='F'
+-- -- union
+-- -- select id,name,'Male'--3col
+-- -- from employee
+-- -- where gender='M';
+-- -- --get did ,employee count in each depart
+-- -- --where did not null
+-- -- --where count(id)>=2?? having
+-- -- select did,count(id) --5
+-- -- from employee --1
+-- -- where did is not null --2
+-- -- group by did --3
+-- -- having count(id)>=2;--4
+
+-- -- -- --did ,count
+-- -- -- -->count >= 2
+-- -- -- select did,count(id) --scalar value
+-- -- -- from employee --1
+-- -- -- where did is not null--2 value appear in form clause
+-- -- -- group by did--3
+-- -- -- having count(id) >=2; --4 value  appear after group by
+
+
+-- -- -- -- select 'hello world'
+-- -- -- -- select salary+5000 as new_salary,salary
+-- -- -- -- from employee
+-- -- -- -- (cond1 and cond2) or cond3
+-- -- -- -- --like % zero or more char
+-- -- -- -- -- _ one char
+-- -- -- -- -- select name
+-- -- -- -- -- from employee
+-- -- -- -- -- where salary between 5000 and 8000
+-- -- -- -- -- where salary >=5000 and salary<=8000
+-- -- -- -- -- where name in ('ali','mark','sayed')
+-- -- -- -- -- where name ='ali' or name='mark' or name ='sayed'
+-- -- -- -- -- where name like '%a';
+-- -- -- -- -- where name like '%a%'
+-- -- -- -- -- --logical operator
+-- -- -- -- -- --and join two or more condition
+-- -- -- -- -- --consdition1--->true & condition2--->true
+-- -- -- -- -- --or join two  or more codition
+-- -- -- -- -- --consdition1--->false & condition2--->false
+-- -- -- -- -- select * 
+-- -- -- -- -- from employee
+-- -- -- -- -- -- where  managerid=4 and managerid=6;
+-- -- -- -- -- where  managerid=4 or managerid=6;
+-- -- -- -- -- -- --not -->
+-- -- -- -- -- -- select *
+-- -- -- -- -- -- from employee
+-- -- -- -- -- -- where managerid is not null
+
+-- -- -- -- -- -- aggregation function
+-- -- -- -- -- -- count,max,min,avg
+-- -- -- -- -- -- select  count(id), count(employee.did),min(id),max(id),
+-- -- -- -- -- -- avg(salary)
+-- -- -- -- -- -- from employee;
+
+-- -- -- -- -- -- select employee.id as employe_id --5
+-- -- -- -- -- -- from employee  --1
+-- -- -- -- -- -- where id > 4 --2
+-- -- -- -- -- -- order by id desc --3
+-- -- -- -- -- -- limit 1; --4
